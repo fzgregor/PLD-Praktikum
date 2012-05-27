@@ -31,15 +31,13 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity seg7 is
     Port ( sw : in  STD_LOGIC_VECTOR (3 downto 0);
-           seg7_seg : out  STD_LOGIC_VECTOR (6 downto 0);
-           seg7_an : out  STD_LOGIC_VECTOR (3 downto 0));
+           seg7_seg : out  STD_LOGIC_VECTOR (6 downto 0));
 end seg7;
 
 architecture case_statement of seg7 is
 signal seg7_neg : STD_LOGIC_VECTOR (6 downto 0);
 
 begin
-seg7_an <= "1110";
 seg7_seg <= not seg7_neg ;
 
 process (sw)
@@ -50,17 +48,17 @@ begin
 		when X"2" => seg7_neg <= "1101101";
 		when X"3" => seg7_neg <= "1111001";
 		when X"4" => seg7_neg <= "0110011";
-		when X"5" => seg7_neg <= "0110000";
-		when X"6" => seg7_neg <= "0110000";
-		when X"7" => seg7_neg <= "0110000";
-		when X"8" => seg7_neg <= "0110000";
-		when X"9" => seg7_neg <= "0110000";
-		when X"A" => seg7_neg <= "0110000";
-		when X"B" => seg7_neg <= "0110000";
-		when X"C" => seg7_neg <= "0110000";
-		when X"D" => seg7_neg <= "0110000";
-		when X"E" => seg7_neg <= "0110000";
-		when X"F" => seg7_neg <= "0110000";
+		when X"5" => seg7_neg <= "1011011";
+		when X"6" => seg7_neg <= "1011111";
+		when X"7" => seg7_neg <= "1110000";
+		when X"8" => seg7_neg <= "1111111";
+		when X"9" => seg7_neg <= "1111011";
+		when X"A" => seg7_neg <= "1110111";
+		when X"B" => seg7_neg <= "0011111";
+		when X"C" => seg7_neg <= "1001110";
+		when X"D" => seg7_neg <= "0111101";
+		when X"E" => seg7_neg <= "1001111";
+		when X"F" => seg7_neg <= "1000111";
 		when others => seg7_neg <= "-------";
 	end case;
 end process;
@@ -71,7 +69,6 @@ architecture with_select_statement of seg7 is
 signal seg7_neg : STD_LOGIC_VECTOR (6 downto 0);
 
 begin
-seg7_an <= "1110";
 seg7_seg <= not seg7_neg ;
 
 with sw select 
