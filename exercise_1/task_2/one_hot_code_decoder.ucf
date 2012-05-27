@@ -1,0 +1,27 @@
+#NET segments<7> LOC = P142;
+#NET segments<6> LOC = P139;
+#NET segments<5> LOC = P137;
+#NET segments<4> LOC = P135;
+#NET segments<3> LOC = P133;
+#NET segments<2> LOC = P131;
+#NET segments<1> LOC = P129;
+#NET segments<0> LOC = P126;
+#
+#NET anode<0> LOC = P18;
+#NET anode<1> LOC = P17;
+#NET anode<2> LOC = P16;
+#NET anode<3> LOC = P15;
+
+NET binary_code<0> LOC = P104;
+NET binary_code<1> LOC = P140;
+NET binary_code<2> LOC = P138;
+#NET switches<3> LOC = P136;
+
+NET one_hot_code<7> LOC = P42;
+NET one_hot_code<6> LOC = P39;
+NET one_hot_code<5> LOC = P34;
+NET one_hot_code<4> LOC = P35;
+NET one_hot_code<3> LOC = P32;
+NET one_hot_code<2> LOC = P30;
+NET one_hot_code<1> LOC = P26;
+NET one_hot_code<0> LOC = P24;
