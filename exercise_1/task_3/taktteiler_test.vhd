@@ -39,14 +39,14 @@ ARCHITECTURE behavior OF taktteiler_test IS
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT taktteiler
-    PORT(
-         clk : IN  std_logic;
-         rst : IN  std_logic;
-         enable : IN  std_logic;
-         clks : OUT  std_logic_vector(7 downto 0)
-        );
-    END COMPONENT;
+--    COMPONENT taktteiler
+--    PORT(
+--         clk : IN  std_logic;
+--         rst : IN  std_logic;
+--         enable_clock : IN  std_logic;
+--         clks : OUT  std_logic_vector(7 downto 0)
+--        );
+--    END COMPONENT;
     
 
    --Inputs
@@ -63,10 +63,10 @@ ARCHITECTURE behavior OF taktteiler_test IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: taktteiler PORT MAP (
+   uut: entity work.taktteiler PORT MAP (
           clk => clk,
           rst => rst,
-          enable => enable,
+          enable_clock => enable,
           clks => clks
         );
 
@@ -88,7 +88,7 @@ BEGIN
 
       wait for clk_period*10;
 		
-		rst <= '1';
+		rst <= '0';
 
       -- insert stimulus here 
 

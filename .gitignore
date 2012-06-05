@@ -49,3 +49,5 @@
 *.tspec
 *.vm6
 *.err
+*.phd
+*.dat
