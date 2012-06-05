@@ -51,6 +51,25 @@
   \paragraph{Taktfrequenz der Schaltwerke}
   Das Schaltwerk kann mit maximal 256.410 MHz betrieben werden.
 
+  \subsection{4 stellige 7 Segment Anzeige im Multiplex Betrieb}
+  \subsubsection{Vorbereitungen}
+  \paragraph{Vorbereitungsaufgaben a)}
+  F''ur den Z''ahler des Takteils werden 7 Bit ben''otigt. Die Anode wechselt mit einem Takt von 115,125 kHz.
+  \subsubsection{Besonderheiten}
+  \begin{description}
+    \item[Takteiler] Wird bestimmt durch die Trägheit des menschlichem Auges und der Schaltgeschwindigkeit des Auswahltransistors.
+  \end{description}
+  \subsubsection{Auswertung}
+  \paragraph{Ressourcenbedarf}
+  \begin{table}
+    \begin{tabular}{ccc}
+      Macrozellen & Produkt Terme & Funktionsbl"ocke\\
+      18 & 17 & 1, 3, 4, 11\\
+    \end{tabular}
+  \end{table}
+  \paragraph{Taktfrequenz der Schaltwerke}
+  Das Schaltwerk kann mit maximal 256.410 MHz betrieben werden.
+
 
   \section{Codeschloss}
   \subsection{4 Bit Bin"arzahl zu 7 Segment-Darstellung}

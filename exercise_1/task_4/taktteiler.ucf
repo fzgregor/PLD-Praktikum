@@ -1,0 +1,30 @@
+NET seg7_seg<7> LOC = P142;
+NET seg7_seg<6> LOC = P139;
+NET seg7_seg<5> LOC = P137;
+NET seg7_seg<4> LOC = P135;
+NET seg7_seg<3> LOC = P133;
+NET seg7_seg<2> LOC = P131;
+NET seg7_seg<1> LOC = P129;
+NET seg7_seg<0> LOC = P126;
+#
+NET seg7_an<0> LOC = P18;
+NET seg7_an<1> LOC = P17;
+NET seg7_an<2> LOC = P16;
+NET seg7_an<3> LOC = P15;
+
+NET clk LOC = P38;
+NET clk TNM_NET = "GRP_clk";
+TIMESPEC "TS_CLK" = PERIOD "GRP_clk" 1.842 MHz HIGH 50%;
+#NET rst LOC = P104;
+#NET enable_clock LOC = P140;
+#NET binary_code<2> LOC = P138;
+#NET switches<3> LOC = P136;
+
+#NET clks<7> LOC = P42;
+#NET clks<6> LOC = P39;
+#NET clks<5> LOC = P34;
+#NET clks<4> LOC = P35;
+#NET clks<3> LOC = P32;
+#NET clks<2> LOC = P30;
+#NET clks<1> LOC = P26;
+#NET clks<0> LOC = P24;
