@@ -30,8 +30,8 @@ NET led<2> LOC = P34;
 #NET leds<3> LOC = P35;
 #NET leds<4> LOC = P32;
 #NET leds<5> LOC = P30;
-NET leds<3> LOC = P26;
-NET leds<4> LOC = P24; # LD8
+NET led<3> LOC = P26;
+NET led<4> LOC = P24; # LD8
 ##
 ## INPUT
 ##
