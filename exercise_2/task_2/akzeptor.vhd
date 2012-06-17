@@ -62,13 +62,13 @@ begin
 		elsif state = st1 then
 			if btn = "010" then
 				state_next <= st2;
-			elsif btn = "100" then
+			elsif btn = "100" or btn = "001" then
 				state_next <= st4;
 			end if;
 		elsif state = st2 then
 			if btn = "100" then
 				state_next <= st3;
-			elsif btn = "001" then
+			elsif btn = "001" or btn = "010" then
 				state_next <= st4;
 			end if;
 		end if;
