@@ -33,7 +33,7 @@ entity akzeptor is
     Port ( btn : in  STD_LOGIC_VECTOR (2 downto 0);
            clk : in  STD_LOGIC;
            rst : in  STD_LOGIC;
-           led : out  STD_LOGIC_VECTOR (2 downto 0));
+           led : out  STD_LOGIC_VECTOR (4 downto 0));
 end akzeptor;
 
 architecture Behavioral of akzeptor is
@@ -75,12 +75,12 @@ begin
 	end process;
 	
 	with state select
-		led <= "000" when st0,
-		       "001" when st1,
-				 "010" when st2,
-				 "011" when st3,
-				 "111" when st4,
-				 "101" when others;
+		led <= "00000" when st0,
+		       "00001" when st1,
+				 "00010" when st2,
+				 "10011" when st3,
+				 "01111" when st4,
+				 "11111" when others;
 
 end Behavioral;
 
