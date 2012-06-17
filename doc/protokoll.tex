@@ -1,5 +1,8 @@
 \documentclass [] {scrartcl}
 \usepackage[ngerman]{babel}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
 \begin{document}
 
   \subject{Praktikums Programmierbare Schaltkreise}
@@ -70,12 +73,158 @@
   \paragraph{Taktfrequenz der Schaltwerke}
   Das Schaltwerk kann mit maximal 256.410 MHz betrieben werden.
 
-
   \section{Codeschloss}
-  \subsection{4 Bit Bin"arzahl zu 7 Segment-Darstellung}
+  \subsection{Einfuehrung}
+  \subsubsection{Vorbereitungen}
+  \paragraph{L"osungen der Vorbereitungsaufgaben}
+  \paragraph{Statemachine}
+ Die Statemachine zu dieser Aufgabe ist in Abbildung \ref{st_2_1} auf Seite \pageref{st_2_1} zu finden.
+Das gleichzeitige Dr"ucken meherer Tasten wird im SM-Chart durch MORE repr"asentiert.
+\begin{figure}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=4cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=black,text=white]
+
+  \node[state] (st1)                    {$st1$};
+  \node[state]         (st2) [right of=st1] {$st2$};
+  \node[initial,state]         (st0) [above of=st2] {$st0$};
+  \node[state]         (st3) [right of=st2] {$st3$};
+
+  \path
+        (st0) edge [loop above]      node {MORE} (st0)
+                   edge                                   node {BTN1} (st1)
+                   edge                                   node {BTN2} (st2)
+                   edge                                   node {BTN3} (st3)
+	(st1) edge [loop left]            node {MORE or BTN1} (st1)
+                   edge [bend left]                                 node {BTN2} (st2)
+                   edge [bend right=95]                                 node {BTN3} (st3)
+	(st2) edge [loop below]      node{MORE or BTN2} (st2)
+                   edge [bend left]                                 node {BTN1} (st1)
+                   edge [bend left]                                  node {BTN3} (st3)
+        (st3) edge [loop right]         node {MORE or BTN3} (st3)
+                   edge [bend left=55]                                 node[anchor=south] {BTN1} (st1)
+                   edge [bend left]                                 node {BTN2} (st2)
+;
+\end{tikzpicture}
+\caption{Statemachine f"ur Komplex 2 Aufgabe 1}
+\label{st_2_1}
+\end{figure}
+  \subsubsection{Besonderheiten}
+  \begin{description}
+    \item[Takteiler] Wodurch vorgegeben?
+    \item[Erkennen mehrmaligen Dr"uckens einer Taste] Warum wichtig?
+  \end{description}
+  \subsubsection{Auswertung}
+  \paragraph{Ressourcenbedarf}
+  \begin{table}
+    \begin{tabular}{lccc}
+      Version & Macrozellen & Produkt Terme & Funktionsbl"ocke\\
+      Teilaufgabe c & 5 & 9 & 1, 6\\
+      Teilaufgabe d One-Hot & 5 & 9 & 1, 6\\
+      Teilaufgabe d Gray-Code & 5 & 9 & 1, 6\\
+      Teilaufgabe d Bin"arcode & 5 & 9 & 1, 6\\
+    \end{tabular}
+  \end{table}
+  \paragraph{Taktfrequenz der Schaltwerke}
+%   \begin{table}
+%    \begin{tabular}{}
+    
+%    \end{tabular}
+%  \end{table} 
+
+  \subsection{Akzeptor}
   \subsubsection{Vorbereitungen}
   \paragraph{L"osungen der Vorbereitungsaufgaben}
   \paragraph{StateMachines}
+\begin{figure}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=4cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=black,text=white]
+
+  \node[initial,state] (st0)                    {$st0$};
+  \node[state]         (st1) [below of=st0] {$st1$};
+  \node[state]         (st2) [right of=st1] {$st2$};
+  \node[state]         (st3) [right of=st2] {$st3$};
+  \node[state]         (st4) [below of=st1] {$st4$};
+
+  \path
+        (st0) edge [loop above]      node {MORE or RES} (st0)
+                   edge                                    node[left] {BTN1} (st1)
+                   edge [bend right=60]         node[left]{BTN2 or BTN3} (st4)
+	(st1.east) edge [bend left=90]            node{MORE or BTN1} (st1.south)
+        (st1) edge                                    node {BTN2} (st2)
+                   edge                                    node {BTN3} (st4)
+                   edge [bend right]         node[right] {RES} (st0)
+	(st2.east) edge[bend left=90]      node {MORE or BTN2} (st2.south)
+        (st2)           edge                                    node {BTN3} (st3)
+                   edge [bend left]                                   node {BTN1} (st4)
+                   edge [bend right]           node[right] {RES} (st0)
+        (st3) edge [loop below]         node {MORE or BTN3} (st3)
+                   edge [bend right]           node[right] {RES} (st0)
+        (st4) edge [bend left=50]             node[right] {RES} (st0)
+;
+\end{tikzpicture}
+\caption{Statemachine f"ur Komplex 2 Aufgabe 2}
+\label{st_2_2}
+\end{figure}
+  \subsubsection{Besonderheiten}
+  \begin{description}
+    \item[Takteiler] Wodurch vorgegeben?
+    \item[Erkennen mehrmaligen Dr"uckens einer Taste] Warum wichtig?
+  \end{description}
+  \subsubsection{Auswertung}
+  \paragraph{Ressourcenbedarf}
+%  \begin{table}
+%    \begin{tabular}{}
+    
+%    \end{tabular}
+%  \end{table}
+  \paragraph{Taktfrequenz der Schaltwerke}
+%   \begin{table}
+%    \begin{tabular}{}
+    
+%    \end{tabular}
+%  \end{table} 
+
+  \subsection{Codeschloss}
+  \subsubsection{Vorbereitungen}
+  \paragraph{L"osungen der Vorbereitungsaufgaben}
+  \paragraph{StateMachines}
+\begin{figure}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=black,text=white]
+
+  \node[initial,state] (start)                    {$start$};
+  \node[state]         (st1) [right of=start] {$st1$};
+  \node[state]         (st2) [right of=st1] {$st2$};
+  \node[state]         (st3) [right of=st2] {$st3$};
+  \node[state]         (st4) [right of=st3] {$st4$};
+  \node[state]         (open) [above of=st2] {$open$};
+  \node[state]         (locked) [below of=st2] {$locked$};
+
+  \path
+        (start) edge node[below]{BTN1} (st1)
+        (start) edge[bend right] node[above right]{OTHERS} (locked)
+        (st1) edge node[below]{BTN2} (st2)
+                   edge[bend right] node{RES} (start)
+                   edge node[left, near start]{OTHERS} (locked)
+        (st2) edge node[below]{BTN3} (st3)
+                   edge[bend right] node{RES} (start)
+                   edge node[near start]{OTHERS} (locked)
+        (st3) edge node[below]{BTN4} (st4)
+                   edge[bend right] node{RES} (start)
+                   edge node[near start]{OTHERS} (locked)
+        (st4) edge[bend right] node{BTN5} (open)
+                   edge[bend right] node{RES} (start)
+                   edge[bend left] node[right, near start]{OTHERS} (locked)
+        (open) edge[bend right] node{RES} (start)
+                   edge[loop above] node{OTHERS} (open)
+        (locked) edge[bend left=45] node[near end]{RES} (start)
+;
+\end{tikzpicture}
+\caption{Statemachine 1 des Codeschlosses (Akzeptor)}
+\end{figure}
   \subsubsection{Besonderheiten}
   \begin{description}
     \item[Takteiler] Wodurch vorgegeben?
