@@ -22,21 +22,19 @@ architecture Behavioral of state_machine is
 	signal state : StateT := st0;
 	signal state_next : StateT;
 begin
-	clocked_process : process(clk, rst)
+	clocked_process : process(clk)
 	begin
 		if rising_edge(clk) then
-		   if rst = '1' then
-				state <= st0;
-			else
-				state <= state_next;
-			end if;
+			state <= state_next;
 		end if;
 	end process;
 	
-	state_machine : process(state, btn)
+	state_machine : process(state, btn, rst)
 	begin
 		state_next <= state;
-		if btn = "001" then
+		if rst = '1' then
+			state_next <= st0;
+		elsif btn = "001" then
 			state_next <= st1;
 		elsif btn = "010" then
 			state_next <= st2;
