@@ -109,6 +109,38 @@ Das gleichzeitige Dr"ucken meherer Tasten wird im SM-Chart durch MORE repr"asent
 \caption{Statemachine f"ur Komplex 2 Aufgabe 1}
 \label{st_2_1}
 \end{figure}
+\begin{figure}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=4cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=black,text=white]
+
+  \node[state] (st1)                    {$st1$};
+  \node[state]         (st2) [right of=st1] {$st2$};
+  \node[initial,state]         (st0) [above of=st2] {$st0$};
+  \node[state]         (st3) [right of=st2] {$st3$};
+
+  \path
+        (st0) edge [loop above]      node {MORE or RES} (st0)
+                   edge                                   node[left] {BTN1} (st1)
+                   edge [bend right]                               node[left] {BTN2} (st2)
+                   edge                                  node[right] {BTN3} (st3)
+	(st1) edge [loop left]            node {MORE or BTN1} (st1)
+                   edge [bend left]                                 node {BTN2} (st2)
+                   edge [bend right=95]                                 node {BTN3} (st3)
+                   edge [bend left]        node[left]{RES} (st0)
+	(st2) edge [loop below]      node{MORE or BTN2} (st2)
+                   edge [bend left]                                 node {BTN1} (st1)
+                   edge [bend left]                                  node {BTN3} (st3)
+                   edge [bend right]                             node[right]{RES} (st0)
+        (st3) edge [loop right]         node {MORE or BTN3} (st3)
+                   edge [bend left=55]                                 node[anchor=south] {BTN1} (st1)
+                   edge [bend left]                                 node {BTN2} (st2)
+                   edge [bend right]                                   node[right]{RES} (st0)
+;
+\end{tikzpicture}
+\caption{Erweiterte Statemachine f"ur Komplex 2 Aufgabe 1}
+\label{st_2_2}
+\end{figure}
   \subsubsection{Besonderheiten}
   \begin{description}
     \item[Takteiler] Wodurch vorgegeben?
@@ -126,18 +158,24 @@ Das gleichzeitige Dr"ucken meherer Tasten wird im SM-Chart durch MORE repr"asent
       Teilaufgabe e One-Hot & 5 & 11 & 1, 6\\
       Teilaufgabe e Gray-Code & 5 & 11 & 1, 6\\
       Teilaufgabe e Bin"arcode & 5 & 11 & 1, 6\\
+      Teilaufgabe f One-Hot & 5 & 11 & 1, 6\\
+      Teilaufgabe f Gray-Code & 5 & 11 & 1, 6\\
+      Teilaufgabe f Bin"arcode & 5 & 11 & 1, 6\\
     \end{tabular}
   \end{table}
-  \paragraph{Taktfrequenz der Schaltwerke}
-%   \begin{table}
-%    \begin{tabular}{}
-    
-%    \end{tabular}
-%  \end{table} 
-
   \subsection{Akzeptor}
   \subsubsection{Vorbereitungen}
   \paragraph{L"osungen der Vorbereitungsaufgaben}
+  \begin{itemize}
+    \item[Welche Eingabe muss erfolgen, damit Zustand st1, st2 sowie st3 erreicht werden?] 
+    Um Zustand st1 zu erreichen muss beliebig oft BTN1 gedr"uckt werden.
+    Zustand st2 wird nur von Zustand st2 aus erreicht und zwar indem beliebig oft BTN2 gedr"uckt wird.
+    Zustand st3 wird wiederum nur erreicht wenn vorher st2 erreicht wurde und anschließend beliebig oft BTN3 gedr"uckt wird.
+    \item[Bei welchen Eingaben wird Zustand st4 erreicht?]
+    Bei allen Eingaben die nicht mit BTN1 starten oder bei dennen nach einem BTNi nicht BTNi oder BTN(i+1) gedr"uckt wird und anschließend kein RES vorkommt.
+   \item[Welche Bedeutung besitzen die Zustande st3 und st4 im Sinne eines Akzeptors?]
+   Zustand st3 repr"asentiert das akzeptieren der Eingabe und st4 das ablehnen.
+  \end{itemize}
   \paragraph{StateMachines}
 \begin{figure}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=4cm,
@@ -162,9 +200,10 @@ Das gleichzeitige Dr"ucken meherer Tasten wird im SM-Chart durch MORE repr"asent
         (st2)           edge                                    node {BTN3} (st3)
                    edge [bend left]                                   node {BTN1} (st4)
                    edge [bend right]           node[right] {RES} (st0)
-        (st3) edge [loop below]         node {MORE or BTN3} (st3)
+        (st3) edge [loop below]         node {MORE or BTN3 or BTN2 or BTN1} (st3)
                    edge [bend right]           node[right] {RES} (st0)
         (st4) edge [bend left=50]             node[right] {RES} (st0)
+                   edge [loop below]         node {MORE or BTN3 or BTN2 or BTN1} (st4)
 ;
 \end{tikzpicture}
 \caption{Statemachine f"ur Komplex 2 Aufgabe 2}
@@ -177,17 +216,12 @@ Das gleichzeitige Dr"ucken meherer Tasten wird im SM-Chart durch MORE repr"asent
   \end{description}
   \subsubsection{Auswertung}
   \paragraph{Ressourcenbedarf}
-%  \begin{table}
-%    \begin{tabular}{}
-    
-%    \end{tabular}
-%  \end{table}
-  \paragraph{Taktfrequenz der Schaltwerke}
-%   \begin{table}
-%    \begin{tabular}{}
-    
-%    \end{tabular}
-%  \end{table} 
+  \begin{table}
+    \begin{tabular}{lccc}
+      Version & Macrozellen & Produkt Terme & Funktionsbl"ocke\\
+      Teilaufgabe c & 5 & 13 & 1, 6\\
+    \end{tabular}
+  \end{table}
 
   \subsection{Codeschloss}
   \subsubsection{Vorbereitungen}
