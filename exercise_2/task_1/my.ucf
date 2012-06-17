@@ -36,7 +36,7 @@ NET led<2> LOC = P34;
 ## INPUT
 ##
 ## SWITCHES
-#NET switches<0> LOC = P104; # SW1
+NET rst LOC = P104; # SW1
 #NET switches<1> LOC = P140;
 #NET switches<2> LOC = P138;
 #NET switches<3> LOC = P136;

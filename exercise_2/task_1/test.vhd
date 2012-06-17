@@ -38,15 +38,6 @@ END test;
 ARCHITECTURE behavior OF test IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
- 
-    COMPONENT state_machine
-    PORT(
-         clk : IN  std_logic;
-         rst : IN  std_logic;
-         btn : IN  std_logic_vector(2 downto 0);
-         led : OUT  std_logic_vector(2 downto 0)
-        );
-    END COMPONENT;
     
 
    --Inputs
@@ -63,7 +54,7 @@ ARCHITECTURE behavior OF test IS
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: state_machine PORT MAP (
+   uut: entity work.state_machine PORT MAP (
           clk => clk,
           rst => rst,
           btn => btn,
@@ -87,11 +78,14 @@ BEGIN
       wait for clk_period;
 		btn <= "001";
       wait for clk_period;
+		rst <= '1';
 		btn <= "010";
       wait for clk_period;
 		btn <= "111";
 		wait for clk_period;
 		btn <= "100";
+		wait for clk_period;
+		rst <= '0';
 
       wait;
    end process;

@@ -12,6 +12,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity state_machine is
     Port ( clk : in  STD_LOGIC;
+	        rst : in  STD_LOGIC;
            btn : in  STD_LOGIC_VECTOR (2 downto 0);
            led : out  STD_LOGIC_VECTOR (2 downto 0));
 end state_machine;
@@ -21,10 +22,14 @@ architecture Behavioral of state_machine is
 	signal state : StateT := st0;
 	signal state_next : StateT;
 begin
-	clocked_process : process(clk)
+	clocked_process : process(clk, rst)
 	begin
 		if rising_edge(clk) then
-			state <= state_next;
+		   if rst = '1' then
+				state <= st0;
+			else
+				state <= state_next;
+			end if;
 		end if;
 	end process;
 	
