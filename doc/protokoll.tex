@@ -265,6 +265,32 @@ Das gleichzeitige Dr"ucken meherer Tasten wird im SM-Chart durch MORE repr"asent
 \end{tikzpicture}
 \caption{Statemachine 1 des Codeschlosses (Akzeptor)}
 \end{figure}
+
+
+\begin{figure}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=black,text=white]
+
+  \node[initial,state] (v1)                    {$V1$};
+  \node[state]         (k1) [above left of=v1] {$K1$};
+  \node[state]         (v2) [above right of=v1] {$V2$};
+  \node[state]         (k2) [below right of=v1] {$K2$};
+  \node[state]         (v3) [below left of=v1] {$V3$};
+
+  \path
+        (v1) edge[bend left] node{$KOR$} (k1)
+	(k1) edge[bend left] node{$\overline{KOR}$} (v2)
+        (v2) edge[bend left] node{$KOR$} (k2)
+	(k2) edge[bend left] node{$\overline{KOR}$} (v3)
+	(k1) edge[bend left] node {$RES$} (v1)
+	(k2) edge[bend left] node {$RES$} (v1)
+	(v2) edge[bend left] node {$RES$} (v1)
+	(v3) edge[bend left] node[right, near start] {$RES$} (v1)
+;
+\end{tikzpicture}
+\caption{Statemachine 2 des Codeschlosses (Fehlerzaehler)}
+\end{figure}
   \subsubsection{Besonderheiten}
   \begin{description}
     \item[Takteiler] Wodurch vorgegeben?
