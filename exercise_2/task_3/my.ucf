@@ -1,0 +1,55 @@
+# Board Clock
+NET CLK LOC = P38;
+NET CLK TNM_NET = "GRP_clk";
+TIMESPEC "TS_CLK" = PERIOD "GRP_clk" 1.842 MHz HIGH 50%;
+
+## USER INTERAKTION
+##
+## OUTPUT
+##
+## 7 Segment Anzeige
+## Segmente
+#NET seg7_sg<7> LOC = P142;
+#NET seg7_sg<6> LOC = P139;
+#NET seg7_sg<5> LOC = P137;
+#NET seg7_sg<4> LOC = P135;
+#NET seg7_sg<3> LOC = P133;
+#NET seg7_sg<2> LOC = P131;
+#NET seg7_sg<1> LOC = P129;
+#NET seg7_sg<0> LOC = P126;
+## Anode
+#NET seg7_an<0> LOC = P18;
+#NET seg7_an<1> LOC = P17;
+#NET seg7_an<2> LOC = P16;
+#NET seg7_an<3> LOC = P15;
+##
+## LEDS
+NET RDY LOC = P42; # LD1
+NET OFFEN LOC = P39;
+NET LED<0> LOC = P34;
+NET LED<1> LOC = P35;
+NET LED<2> LOC = P32;
+NET LED<3> LOC = P30;
+NET LED<4> LOC = P26;
+NET LED<5> LOC = P24; # LD8
+##
+## INPUT
+##
+## SWITCHES
+NET RST LOC = P104; # SW1
+#NET switches<1> LOC = P140;
+#NET switches<2> LOC = P138;
+#NET switches<3> LOC = P136;
+#NET switches<4> LOC = P134;
+#NET switches<5> LOC = P132;
+#NET switches<6> LOC = P130;
+NET KOR LOC = P128; # SW8
+##
+## BUTTONS
+##
+NET BTN<0> LOC = P125; # BTN1
+NET BTN<1> LOC = P124; # .
+NET BTN<2> LOC = P21; # .
+NET BTN<3> LOC = P20; # .
+NET BTN<4> LOC = P19; # BTN5
+
