@@ -13,14 +13,15 @@
 
   \section{7 Segmentanzeige}
   \subsection{4 Bit Bin"arzahl zu 7 Segment-Darstellung}
-  \subsubsection{Auswertung}
-  \paragraph{Ressourcenbedarf}
-  \begin{table}
-    \begin{tabular}{lccc}
+  \subsubsection{Auswertung - Ressourcenbedarf}
+  \begin{table}[h]
+    \begin{tabular}{l|c|c|c}
       Implementierung & Macrozellen & Produkt Terme & Funktionsbl"ocke\\
+      \hline
       case statement & 12 & 20 & 1, 3, 11\\
       select statement & 12 & 20 & 1, 3, 11\\
     \end{tabular}
+    Der Ressourcenverbrauch der beiden Varianten ist identisch. Vermutlich werden sie auf den selben Schaltplan synthetisiert.
   \end{table}
   \subsection{3 Bit Bin"arzahl zu One-Hot-Code}
   \subsubsection{Vorbereitungen}
@@ -28,11 +29,11 @@
   Wie viele Stellen hat der One-Hot-Code, wenn genau alle Eingangsbelegungen abgedeckt werden sollen?
 
   Der One-Hot-Code hat $2^3 = 8$ Stellen.
-  \subsubsection{Auswertung}
-  \paragraph{Ressourcenbedarf}
-  \begin{table}
-    \begin{tabular}{ccc}
+  \subsubsection{Auswertung - Ressourcenbedarf}
+  \begin{table}[h]
+    \begin{tabular}{c|c|c}
       Macrozellen & Produkt Terme & Funktionsbl"ocke\\
+      \hline
       8 & 8 & 5, 6, 7\\
     \end{tabular}
   \end{table}
@@ -41,36 +42,50 @@
   \paragraph{Vorbereitungsaufgaben a)}
   Mit welcher Frequenz blinken die LEDs LD1 bis LD8?
 
-  LD1 blinkt mit $1,842*10^6/2^{20} = 1,76$ Hz, LD2 mit $1,842*10^6/2^{19} = 3,51$ Hz, LD3 mit $1,842*10^6/2^{18} = 7,03$ Hz,  LD4 mit $1,842*10^6/2^{17} = 14,05$ Hz, LD5 mit $1,842*10^6/2^{16} = 28,11$ Hz, LD6 mit $1,842*10^6/2^{15} = 56,21$ Hz, LD7 mit $1,842*10^6/2^{14} = 112,43$ Hz und LD8 mit $1,842*10^6/2^{13} = 224,85$ Hz.
-  
+ \begin{table}[h]
+  \begin{tabular}{l|c|c}
+    LED & Teiler & Frequenz (Hz) \\
+    \hline
+    LD1 & $2^{20}$ & $1,76$ \\
+    LD2 & $2^{19}$ & $3,51$ \\
+    LD3 & $2^{18}$ & $7,03$ \\
+    LD4 & $2^{17}$ & $14,05$ \\
+    LD5 & $2^{16}$ & $28,11$ \\
+    LD6 & $2^{15}$ & $56,21$ \\
+    LD7 & $2^{14}$ & $112,43$ \\
+    LD8 & $2^{13}$ & $224,85$ \\
+  \end{tabular}
+ \end{table}
+
   \subsubsection{Auswertung}
-  \paragraph{Ressourcenbedarf}
-  \begin{table}
-    \begin{tabular}{ccc}
+
+  \begin{table}[h]
+    \begin{tabular}{c|c|c}
       Macrozellen & Produkt Terme & Funktionsbl"ocke\\
-      21 & 24 & 1, 5, 6, 7\\
+      \hline
+      21 & 42 & 1, 5, 6, 7\\
     \end{tabular}
   \end{table}
-  \paragraph{Taktfrequenz der Schaltwerke}
+
   Das Schaltwerk kann mit maximal 256.410 MHz betrieben werden.
 
   \subsection{4 stellige 7 Segment Anzeige im Multiplex Betrieb}
   \subsubsection{Vorbereitungen}
   \paragraph{Vorbereitungsaufgaben a)}
-  F''ur den Z''ahler des Takteils werden 7 Bit ben''otigt. Die Anode wechselt mit einem Takt von 115,125 kHz.
+  F"ur den Z"ahler des Takteils werden mindestens 5 Bit ben"otigt. Die Anode wechselt mit einem Takt von 28,78 kHz.
   \subsubsection{Besonderheiten}
   \begin{description}
-    \item[Takteiler] Wird bestimmt durch die Trägheit des menschlichem Auges und der Schaltgeschwindigkeit des Auswahltransistors.
+    \item[Takteiler] Wird bestimmt durch die Tr"agheit des menschlichem Auges, der Schaltgeschwindigkeit des Auswahltransistors und den dardurch ben"otigten Schaltzeiten der Anode.
   \end{description}
   \subsubsection{Auswertung}
-  \paragraph{Ressourcenbedarf}
-  \begin{table}
-    \begin{tabular}{ccc}
+
+  \begin{table}[h]
+    \begin{tabular}{c|c|c}
       Macrozellen & Produkt Terme & Funktionsbl"ocke\\
-      18 & 17 & 1, 3, 4, 11\\
+      \hline
+      16 & 15 & 1, 3, 4, 11\\
     \end{tabular}
   \end{table}
-  \paragraph{Taktfrequenz der Schaltwerke}
   Das Schaltwerk kann mit maximal 256.410 MHz betrieben werden.
 
   \section{Codeschloss}

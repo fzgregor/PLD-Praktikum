@@ -52,10 +52,12 @@ clks(0) <= cnt(13);
 
 process(clk, rst, enable_clock)
 begin
-    if rst = '1' then
-	     cnt <= (others => '0');
-    elsif rising_edge(clk) and enable_clock = '1' then
-	     cnt <= cnt + 1;
+    if rising_edge(clk) then
+		if rst = '1' then
+			cnt <= (others => '0');
+	   elsif enable_clock = '1' then
+			cnt <= cnt + 1;
+		end if;
 	 end if;
 end process;
 

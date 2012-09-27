@@ -38,10 +38,10 @@ entity taktteiler is
 end taktteiler;
 
 architecture Behavioral of taktteiler is
-	 signal cnt : unsigned(6 downto 0) := (others => '0');
+	 signal cnt : unsigned(4 downto 0) := (others => '0');
 begin
 
-clks <= std_logic_vector(cnt(6 downto 5));
+clks <= std_logic_vector(cnt(4 downto 3));
 
 process(clk, rst, enable_clock)
 begin
