@@ -78,14 +78,21 @@ BEGIN
       wait for clk_period;
 		btn <= "001";
       wait for clk_period;
+		assert led = "001";
 		rst <= '1';
+      wait for clk_period;
+		assert led = "000";
+		rst <= '0';
 		btn <= "010";
       wait for clk_period;
+		assert led = "010";
 		btn <= "111";
 		wait for clk_period;
+		assert led = "010";
 		btn <= "100";
 		wait for clk_period;
-		rst <= '0';
+		assert led = "100";
+
 
       wait;
    end process;

@@ -84,11 +84,16 @@ BEGIN
       wait for clk_period;
 		btn <= "001";
       wait for clk_period;
+		assert btn = "001";
 		btn <= "010";
       wait for clk_period;
+		assert btn = "010";
 		btn <= "111";
 		wait for clk_period;
+		assert btn = "010";
 		btn <= "100";
+		wait for clk_period;
+		assert btn = "100";
 
       wait;
    end process;

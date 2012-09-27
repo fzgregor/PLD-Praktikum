@@ -31,16 +31,45 @@ begin
 	state_machine : process(state, btn)
 	begin
 		state_next <= state;
-		case btn is
-			when "001" =>
-				state_next <= st1;
-			when "010" =>
-				state_next <= st2;
-			when "100" =>
-				state_next <= st3;
-			when others =>
-				null;
-		end case;
+		if state = st0 then
+			case btn is
+				when "001" =>
+					state_next <= st1;
+				when "010" =>
+					state_next <= st2;
+				when "100" =>
+					state_next <= st3;
+				when others =>
+					null;
+			end case;
+		elsif state = st1 then
+			case btn is
+				when "010" =>
+					state_next <= st2;
+				when "100" =>
+					state_next <= st3;
+				when others =>
+					null;
+			end case;
+		elsif state = st2 then
+			case btn is
+				when "001" =>
+					state_next <= st1;
+				when "100" =>
+					state_next <= st3;
+				when others =>
+					null;
+			end case;
+		elsif state = st3 then
+			case btn is
+				when "001" =>
+					state_next <= st1;
+				when "010" =>
+					state_next <= st2;
+				when others =>
+					null;
+			end case;
+		end if;
 	end process;
 	
 	with state select
