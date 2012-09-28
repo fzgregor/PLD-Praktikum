@@ -40,41 +40,37 @@ architecture Behavioral of akzeptor is
 	type StateT is (st0, st1, st2, st3, st4);
 	signal state : StateT := st0;
 	signal state_next : StateT;
-	signal btn_buffered : std_logic_vector(2 downto 0);
 begin
 	clocked_process : process(clk)
 	begin
 		if rising_edge(clk) then
-			if btn /= "000" then
-				btn_buffered <= btn_buffered or btn;
+			if rst = '1' then
+				state <= st0;
 			else
 				state <= state_next;
-				btn_buffered <= "000";
 			end if;
 		end if;
 	end process;
 	
-	state_machine : process(state, btn_buffered, rst)
+	state_machine : process(state, btn, rst)
 	begin
 		state_next <= state;
-		if rst = '1' then
-			state_next <= st0;
-		elsif state = st0 then
-			if btn_buffered = "001" then
+		if state = st0 then
+			if btn = "001" then
 				state_next <= st1;
-			elsif btn_buffered /= "000" then
+			elsif btn = "100" or btn = "010" then
 				state_next <= st4;
 			end if;
 		elsif state = st1 then
-			if btn_buffered = "010" then
+			if btn = "010" then
 				state_next <= st2;
-			elsif btn_buffered /= "000" then
+			elsif btn = "100" then
 				state_next <= st4;
 			end if;
 		elsif state = st2 then
-			if btn_buffered = "100" then
+			if btn = "100" then
 				state_next <= st3;
-			elsif btn_buffered /= "000" then
+			elsif btn = "001" then
 				state_next <= st4;
 			end if;
 		end if;
@@ -86,7 +82,7 @@ begin
 				 "00010" when st2,
 				 "10011" when st3,
 				 "01111" when st4,
-				 "11111" when others;
+				 "10101" when others;
 
 end Behavioral;
 

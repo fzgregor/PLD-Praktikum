@@ -43,7 +43,7 @@ ARCHITECTURE behavior OF test IS
    signal rst : std_logic := '0';
 
  	--Outputs
-   signal led : std_logic_vector(4 downto 0);
+   signal led : std_logic_vector(2 downto 0);
 
    -- Clock period definitions
    constant clk_period : time := 10 ns;
@@ -76,24 +76,33 @@ BEGIN
       wait for clk_period;
 		rst <= '0';
       wait for clk_period;
-		assert led = "00000";
+		assert led = "000";
 		btn <= "010";
       wait for clk_period;
-		assert led = "01111";
+		assert led = "111";
 		rst <= '1';
 		btn <= "000";
       wait for clk_period;
 		rst <= '0';
       wait for clk_period;
-		assert led = "00000";
+		assert led = "000";
 		btn <= "001";
       wait for clk_period;
-		assert led = "00001";
+		assert led = "001";
+		-- more than one button
 		btn <= "011";
       wait for clk_period;
-		assert led = "01111";
+		assert led = "001";
+		-- no button
+		btn <= "000";
+      wait for clk_period;
+		assert led = "001";
 		btn <= "010";
       wait for clk_period;
+		assert led = "010";
+		btn <= "100";
+      wait for clk_period;
+		assert led = "011";
       wait;
    end process;
 
